@@ -1,0 +1,347 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+/* Fonts are preloaded from the document head (see __root.tsx) for faster FCP */
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * SAMBRIZZI PRODUCCIÓN — Design System
+ * Editorial fashion-week aesthetic.
+ * Black + Gold + Cream. Playfair Display + Inter.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
+  --color-gold-deep: var(--gold-deep);
+  --color-cream: var(--cream);
+  --color-ink: var(--ink);
+  --color-ash: var(--ash);
+
+  --font-display: "Playfair Display", "Times New Roman", "Georgia", serif;
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+:root {
+  --radius: 0.25rem;
+
+  /* Editorial dark base */
+  --background: oklch(0.04 0 0);          /* near-black #050505 */
+  --foreground: oklch(0.96 0.005 80);     /* warm cream */
+
+  --card: oklch(0.08 0.005 60);
+  --card-foreground: oklch(0.96 0.005 80);
+  --popover: oklch(0.06 0 0);
+  --popover-foreground: oklch(0.96 0.005 80);
+
+  /* Gold as primary brand */
+  --primary: oklch(0.78 0.095 80);        /* #C9A96E */
+  --primary-foreground: oklch(0.04 0 0);
+
+  --secondary: oklch(0.14 0.005 60);
+  --secondary-foreground: oklch(0.96 0.005 80);
+  --muted: oklch(0.12 0.005 60);
+  --muted-foreground: oklch(0.62 0.015 80);
+  --accent: oklch(0.78 0.095 80);
+  --accent-foreground: oklch(0.04 0 0);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.2 0.01 80 / 0.5);
+  --input: oklch(0.18 0.01 80);
+  --ring: oklch(0.78 0.095 80);
+
+  /* Brand specifics */
+  --gold: oklch(0.78 0.095 80);            /* #C9A96E elegant gold */
+  --gold-bright: oklch(0.88 0.115 88);     /* highlight gold */
+  --gold-deep: oklch(0.58 0.09 70);        /* antique gold */
+  --cream: oklch(0.96 0.012 80);
+  --ink: oklch(0.04 0 0);                  /* deep black */
+  --ash: oklch(0.12 0.005 60);             /* gris oscuro */
+
+  /* Gradients & shadows */
+  --gradient-gold: linear-gradient(135deg, oklch(0.88 0.115 88), oklch(0.78 0.095 80) 50%, oklch(0.58 0.09 70));
+  --gradient-fade-bottom: linear-gradient(to bottom, transparent, oklch(0.04 0 0) 90%);
+  --gradient-fade-top: linear-gradient(to top, transparent, oklch(0.04 0 0) 90%);
+  --gradient-vignette: radial-gradient(ellipse at center, transparent 30%, oklch(0.04 0 0 / 0.85) 100%);
+  --gradient-spotlight: radial-gradient(ellipse 80% 60% at 50% 40%, oklch(0.78 0.095 80 / 0.18), transparent 70%);
+
+  --shadow-gold: 0 20px 60px -20px oklch(0.78 0.095 80 / 0.45);
+  --shadow-elegant: 0 30px 80px -30px oklch(0 0 0 / 0.9);
+
+  --transition-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dark {
+  /* Same palette — site is dark-only */
+  --background: oklch(0.04 0 0);
+  --foreground: oklch(0.96 0.005 80);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  /* Custom elegant scrollbar */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--ink); }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--gold-deep), var(--gold));
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .font-display { font-family: var(--font-display); }
+  .font-sans { font-family: var(--font-sans); }
+
+  /* Editorial display heading */
+  .heading-editorial {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+  }
+
+  /* Tracked label — small caps */
+  .label-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .label-meta {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+
+  /* Gold gradient text */
+  .text-gold-gradient {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Hairline gold divider */
+  .hairline-gold {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold) 50%, transparent);
+  }
+
+  /* Premium button */
+  .btn-luxury {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.05rem 2.25rem;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--gradient-gold);
+    border: 1px solid var(--gold);
+    overflow: hidden;
+    transition: all 0.6s var(--transition-luxury);
+    cursor: pointer;
+  }
+  .btn-luxury::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, oklch(1 0 0 / 0.4) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.8s var(--transition-luxury);
+  }
+  .btn-luxury:hover::before { transform: translateX(100%); }
+  .btn-luxury:hover { box-shadow: var(--shadow-gold); transform: translateY(-2px); }
+
+  .btn-ghost-gold {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.05rem 2.25rem;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: transparent;
+    border: 1px solid oklch(0.78 0.095 80 / 0.4);
+    transition: all 0.5s var(--transition-luxury);
+    cursor: pointer;
+  }
+  .btn-ghost-gold:hover {
+    border-color: var(--gold);
+    background: oklch(0.78 0.095 80 / 0.08);
+    color: var(--gold-bright);
+  }
+
+  /* Image vignette overlay */
+  .img-vignette::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-vignette);
+    pointer-events: none;
+  }
+
+  /* Reveal on scroll utility */
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s var(--transition-luxury), transform 1.2s var(--transition-luxury);
+  }
+  .reveal-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-fade {
+    opacity: 0;
+    transition: opacity 1.6s ease-out;
+  }
+  .reveal-fade.is-visible { opacity: 1; }
+
+  /* Marquee */
+  .marquee {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  }
+  .marquee-track {
+    display: flex;
+    flex-shrink: 0;
+    gap: 4rem;
+    animation: marquee 40s linear infinite;
+  }
+
+  /* Cinematic image hover */
+  .card-luxury {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .card-luxury img {
+    transition: transform 1.4s var(--transition-luxury), filter 0.8s ease;
+  }
+  .card-luxury:hover img {
+    transform: scale(1.06);
+    filter: brightness(0.6) contrast(1.05);
+  }
+  .card-luxury .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, oklch(0 0 0 / 0.85) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+  }
+  .card-luxury:hover .card-overlay { opacity: 1; }
+  .card-luxury .card-corner {
+    position: absolute;
+    inset: 0;
+    border: 1px solid transparent;
+    transition: all 0.6s ease;
+    pointer-events: none;
+  }
+  .card-luxury:hover .card-corner {
+    border-color: var(--gold);
+    inset: 12px;
+  }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.78 0.095 80 / 0.7); }
+  50% { box-shadow: 0 0 0 14px oklch(0.78 0.095 80 / 0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes flash-camera {
+  0%, 100% { opacity: 0; }
+  3% { opacity: 1; }
+  6% { opacity: 0; }
+}
+
+.animate-pulse-gold { animation: pulse-gold 2.5s infinite; }
+.animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+.animate-flash { animation: flash-camera 4s infinite; }
