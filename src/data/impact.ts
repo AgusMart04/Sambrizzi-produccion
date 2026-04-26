@@ -23,6 +23,7 @@ export type City = { name: string; x: number; y: number };
 
 export const cities: City[] = [
   { name: "Buenos Aires", x: 47, y: 78 },
+  { name: "Jujuy", x: 42, y: 55 },
   { name: "São Paulo", x: 60, y: 65 },
   { name: "Asunción", x: 50, y: 60 },
   { name: "Lima", x: 30, y: 48 },
