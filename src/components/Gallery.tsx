@@ -110,7 +110,7 @@ export function Gallery() {
 
           <img
             src={gallery[lightbox]}
-            alt=""
+            alt={`Editorial ${lightbox + 1} de ${gallery.length}`}
             className="max-h-[90vh] max-w-[90vw] object-contain ring-1 ring-gold/30"
             onClick={(e) => e.stopPropagation()}
           />

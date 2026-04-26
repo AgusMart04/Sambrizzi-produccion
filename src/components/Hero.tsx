@@ -19,7 +19,7 @@ export function Hero() {
   }, [index, sequence.length]);
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-ink">
+    <section className="relative min-h-screen w-full bg-ink overflow-visible">
       <div className="absolute inset-0">
         <img
           src={heroImage}
@@ -36,17 +36,17 @@ export function Hero() {
       <div className="pointer-events-none absolute left-[25%] bottom-[28%] h-2 w-2 rounded-full bg-white animate-flash" style={{ animationDelay: "2.4s", boxShadow: "0 0 50px 12px white" }} />
       <div className="pointer-events-none absolute right-[8%] bottom-[40%] h-2 w-2 rounded-full bg-white animate-flash" style={{ animationDelay: "3s", boxShadow: "0 0 35px 10px white" }} />
 
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-[1600px] flex-col justify-end px-6 pb-20 pt-32 md:px-10 md:pb-28">
+      <div className="relative z-10 mx-auto flex min-h-screen w-full flex-col justify-end px-6 pb-20 pt-32 md:px-10 md:pb-28 lg:px-16 xl:px-20 2xl:px-24 pr-8 md:pr-12 lg:pr-16 xl:pr-20 2xl:pr-24">
         <div className="mb-12 flex items-center gap-4">
           <div className="h-px w-12 bg-gold" />
           <span className="label-eyebrow">{heroContent.eyebrow}</span>
         </div>
 
-        <div className="mb-6 flex flex-col gap-1 md:gap-2">
+        <div className="mb-6 flex flex-col gap-1 md:gap-2 w-full mr-4 md:mr-8 lg:mr-12 xl:mr-16 2xl:mr-20">
           {sequence.map((word, i) => (
             <h2
               key={word}
-              className={`heading-editorial text-5xl md:text-7xl lg:text-8xl xl:text-9xl transition-all duration-500 ${
+              className={`heading-editorial text-4xl md:text-6xl lg:text-7xl xl:text-7xl 2xl:text-8xl transition-all duration-500 w-full ${
                 i <= index ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-8 blur-sm"
               } text-foreground/50${showBrand ? " italic" : ""}`}
               style={{ transitionDelay: `${i * 30}ms` }}
@@ -62,9 +62,11 @@ export function Hero() {
           }`}
         >
           <div className="hairline-gold mb-8 max-w-md" />
-          <h1 className="heading-editorial text-6xl md:text-8xl lg:text-9xl text-foreground">
-            {heroContent.brand} <span className="italic text-gold-gradient">{heroContent.brandItalic}</span>
-          </h1>
+          <div className="pr-6 md:pr-12 lg:pr-16 xl:pr-20 2xl:pr-24">
+            <h1 className="heading-editorial text-5xl md:text-7xl lg:text-8xl xl:text-8xl 2xl:text-8xl text-foreground max-w-full">
+              {heroContent.brand} <span className="heading-editorial italic text-gold-gradient">{heroContent.brandItalic}</span>
+            </h1>
+          </div>
           <p className="mt-6 max-w-2xl font-sans text-base md:text-lg text-foreground/70 leading-relaxed">
             {heroContent.tagline}
             <br />
