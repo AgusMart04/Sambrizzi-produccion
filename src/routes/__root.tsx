@@ -1,5 +1,8 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { Analytics } from "@vercel/analytics/react";
+import { Maintenance } from "@/components/Maintenance";
+
+const MAINTENANCE_MODE = true;
 
 function NotFoundComponent() {
   return (
@@ -45,6 +48,10 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
+  if (MAINTENANCE_MODE) {
+    return <Maintenance />;
+  }
+
   return (
     <>
       <HeadContent />
